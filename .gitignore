@@ -1,6 +1,7 @@
 .ide
 .idea/*
-downloads/*
+data/downloads
+data/downloads/*
 software/*.db
 *.pyc
 
