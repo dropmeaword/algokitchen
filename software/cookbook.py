@@ -1,5 +1,3 @@
-from xml.dom import minidom
-
 import chef
 
 def process_recipes():
