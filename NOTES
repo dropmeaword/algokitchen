@@ -1,0 +1,261 @@
+NOTES
+
+http://platform.fatsecret.com/api/
+
+
+BBC FOOD
+
+Test parser with this recipe:
+http://www.bbc.co.uk/food/recipes/jerusalem_artichoke_soup_78921
+
+
+http://www.bbc.co.uk/food/recipes/search?keywords=chicken+curry&x=0&y=0&occasions%5B%5D=&chefs%5B%5D=&programmes%5B%5D=
+
+http://www.bbc.co.uk/food/chicken_curry
+http://www.bbc.co.uk/food/recipes/simplegoanchickencur_67869
+
+http://www.bbc.co.uk/food/ingredients/by/letter/a
+
+
+<ol id="foods-by-letter" class="resources-by-letter">
+                <li>
+                    <h3>B</h3>
+                    <h4>100 ingredients</h4>
+                    <ol class="resources foods grid-view">
+                <li class="resource food" id="bacon">
+                    <a href="/food/bacon">
+                        <img src="http://ichef.bbci.co.uk/food/ic/food_16x9_111/foods/b/bacon_16x9.jpg" width="111" height="63" alt="bacon" />
+                        Bacon                    </a>
+                                                <a href="/food/bacon#related-foods" class="related-foods ingredient">Related (1)</a>
+                                    </li><li class="resource food" id="bagel">
+                    <a href="/food/bagel">
+                        <img src="http://ichef.bbci.co.uk/food/ic/food_16x9_111/recipes/bagels_47163_16x9.jpg" width="111" height="63" alt="bagel" />
+                        Bagel                    </a>
+                                    </li><li class="resource food" id="baguette">
+                    <a href="/food/baguette">
+                        <img src="http://ichef.bbci.co.uk/food/ic/food_16x9_111/recipes/baguettes_11543_16x9.jpg" width="111" height="63" alt="baguette" />
+                        Baguette                    </a>
+                                    </li>
+
+
+
+http://www.bbc.co.uk/food/<ingredient>
+http://www.bbc.co.uk/food/beansprouts
+
+## recipe listings
+	<div id="column-1" class="column">
+		
+				
+		<div id="summary" class="">
+
+	    	<h1 class="">Beansprouts recipes
+	    
+	
+							</h1>
+
+				    	
+						    	<img id="food-image" class="" src="http://ichef.bbci.co.uk/food/ic/food_16x9_608/foods/b/beansprouts_16x9.jpg" width="608" height="342" alt="Beansprouts"/>
+	            		    			<div class="">
+		    				<p>The young, tender sprouts of germinated beans, beansprouts are nutritious, white and crunchy. Mung beansprouts, also known as Chinese beansprouts, are the most common variety and have a delicate flavour. They are short and stubby with a little green ‘head’; soya beansprouts are longer and fatter with a yellow tip. Alfalfa, aduki, chickpea and lentil sprouts can be used in the same way as mung and soya. </p>		    			</div>
+		    			    </div>
+
+		<div id="subcolumn-1" class="subcolumn">
+
+    	
+<div class="module grouped-resource-list-module">
+
+    			<h2>Recipes using beansprouts</h2>
+	                <h3 class="accordion-header initial">Main course</h3>
+                <div class="accordion resource-list">
+            
+                <ul class="resources">
+                        	                        <li class="with-image">
+				<h4>
+    	                                <a href="/food/recipes/pad_thai_36788">
+    	                                        	                                            <img src="http://ichef.bbci.co.uk/food/ic/food_16x9_88/recipes/pad_thai_36788_16x9.jpg" width="88" height="50" alt="Pad Thai" />
+    	                                    Pad Thai    	                                </a>
+    	                            </h4>
+    	                                	                                    <h5>By <span class="chef-name">John Torode</span></h5>
+    	                                	                        </li>
+    	                        
+    	                    	                        <li class="with-image">
+				<h4>
+    	                                <a href="/food/recipes/thai_lamb_salad_with_26133">
+    	                                        	                                            <img src="http://ichef.bbci.co.uk/food/ic/food_16x9_88/recipes/thai_lamb_salad_with_26133_16x9.jpg" width="88" height="50" alt="Thai lamb salad with spicy dressing" />
+    	                                    Thai lamb salad with spicy dressing    	                                </a>
+    	                            </h4>
+    	                                	                                    <h5>By <span class="chef-name">James Martin</span></h5>
+    	                                	                        </li>
+    	                        
+    	                    	                        <li class="with-image">
+				<h4>
+    	                                <a href="/food/recipes/rich_prawn_curry_98414">
+    	                                        	                                            <img src="http://ichef.bbci.co.uk/food/ic/food_16x9_88/recipes/rich_prawn_curry_98414_16x9.jpg" width="88" height="50" alt="Rich prawn curry" />
+    	                                    Rich prawn curry    	                                </a>
+    	                            </h4>
+    	                                	                                    <h5>By <span class="chef-name">Nigel Slater</span></h5>
+    	                                	                        </li>
+    	                        
+    	                    	                        <li class="with-image">
+				<h4>
+    	                                <a href="/food/recipes/turkeysaladwithchine_92947">
+    	                                        	                                            <img src="http://ichef.bbci.co.uk/food/ic/food_16x9_88/recipes/turkeysaladwithchine_92947_16x9.jpg" width="88" height="50" alt="Turkey salad with Chinese cabbage, beansprouts and Vietnamese mint" />
+    	                                    Turkey salad with Chinese cabbage, beansprouts and Vietnamese mint    	                                </a>
+    	                            </h4>
+    	                                	                                    <h5>By <span class="chef-name">Rick Stein</span></h5>
+    	                                	                        </li>
+    	                        
+    	                    	                        <li class=" last-child">
+				<h4>
+    	                                <a href="/food/recipes/chicken_pad_thai_96522">
+    	                                    Chicken and prawn pad Thai    	                                </a>
+    	                            </h4>
+    	                                	                                    <h5>By <span class="chef-name">James Martin</span></h5>
+    	                                	                        </li>
+    	                        
+    	                                </ul>
+            </div>
+                    <h3 class="accordion-header">Light meals &amp; snacks</h3>
+                <div class="accordion resource-list">
+            
+                <ul class="resources">
+                        	                        <li class="with-image">
+				<h4>
+    	                                <a href="/food/recipes/eggfriedrice_67782">
+    	                                        	                                            <img src="http://ichef.bbci.co.uk/food/ic/food_16x9_88/recipes/eggfriedrice_67782_16x9.jpg" width="88" height="50" alt="Egg-fried rice" />
+    	                                    Egg-fried rice    	                                </a>
+    	                            </h4>
+    	                                	                                    <h5>By <span class="chef-name">Jo' Pratt</span></h5>
+    	                                	                        </li>
+    	                        
+    	                    	                        <li>
+				<h4>
+    	                                <a href="/food/recipes/hot_pollack_and_piadina_83316">
+    	                                    Spiced pollack and Piadina flatbreads    	                                </a>
+    	                            </h4>
+    	                                	                                    <h5>By <span class="chef-name">Rick Stein</span></h5>
+    	                                	                        </li>
+    	                        
+    	                    	                        <li class=" last-child">
+				<h4>
+    	                                <a href="/food/recipes/spiced_fish_soup_04499">
+    	                                    Spiced fish soup    	                                </a>
+    	                            </h4>
+    	                                	                                    <h5>By <span class="chef-name">Simon Rimmer</span></h5>
+    	                                	                        </li>
+    	                        
+    	                                </ul>
+            </div>
+                    <h3 class="accordion-header">Starters &amp; nibbles</h3>
+                <div class="accordion resource-list">
+            
+                <ul class="resources">
+                        	                        <li class="with-image">
+				<h4>
+    	                                <a href="/food/recipes/stirfriedvegetablewr_89296">
+    	                                        	                                            <img src="http://ichef.bbci.co.uk/food/ic/food_16x9_88/recipes/stirfriedvegetablewr_89296_16x9.jpg" width="88" height="50" alt="Stir-fried vegetable wraps" />
+    	                                    Stir-fried vegetable wraps    	                                </a>
+    	                            </h4>
+    	                                	                                    <h5>By <span class="chef-name">Ching-He Huang</span></h5>
+    	                                	                        </li>
+    	                        
+    	                    	                        <li class="with-image">
+				<h4>
+    	                                <a href="/food/recipes/chickenandvegetables_89282">
+    	                                        	                                            <img src="http://ichef.bbci.co.uk/food/ic/food_16x9_88/recipes/chickenandvegetables_89282_16x9.jpg" width="88" height="50" alt="Chicken and vegetable spring rolls" />
+    	                                    Chicken and vegetable spring rolls    	                                </a>
+    	                            </h4>
+    	                                	                                    <h5>By <span class="chef-name">Ching-He Huang</span></h5>
+    	                                	                        </li>
+    	                        
+    	                    	                        <li>
+				<h4>
+    	                                <a href="/food/recipes/vegetable_spring_rolls_79388">
+    	                                    Vegetable spring rolls    	                                </a>
+    	                            </h4>
+    	                                	                                    <h5>By <span class="chef-name">Neil Strawson and Richard Hunt</span></h5>
+    	                                	                        </li>
+    	                        
+    	                    	                        <li>
+				<h4>
+    	                                <a href="/food/recipes/scallops_with_raw_46457">
+    	                                    Scallops with raw vegetables, almond satay and ponzu    	                                </a>
+    	                            </h4>
+    	                                	                                    <h5>By <span class="chef-name">Glynn Purnell</span></h5>
+    	                                	                        </li>
+    	                        
+    	                    	                        <li class=" last-child">
+				<h4>
+    	                                <a href="/food/recipes/morecombebayshrimpan_85714">
+    	                                    Morecambe Bay shrimp and tamarind spring rolls    	                                </a>
+    	                            </h4>
+    	                                	                                    <h5>By <span class="chef-name">Dave Myers</span></h5>
+    	                                	                        </li>
+    	                        
+    	                                </ul>
+            </div>
+                    <h3 class="accordion-header">Side dishes</h3>
+                <div class="accordion resource-list">
+            
+                <ul class="resources last-of-type">
+                        	                        <li class=" last-child">
+				<h4>
+    	                                <a href="/food/recipes/asian_slaw_78952">
+    	                                    Asian slaw    	                                </a>
+    	                            </h4>
+    	                                	                                    <h5>By <span class="chef-name">The Hairy Bikers</span></h5>
+    	                                	                        </li>
+    	                        
+    	                                </ul>
+            </div>
+
+
+## Single recipe
+
+
+<div id="subcolumn-1" class="subcolumn">
+
+<img id="food-image" class="photo" src="http://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/simplegoanchickencur_67869_16x9.jpg" width="448" height="252" alt="Simple Goan chicken curry" />
+<div id="description" class="module padded summary">
+<p><span class="summary">This mild Indian-style dish is spicy rather than hot and relatively low-fat. Marinate the chicken slowly for more flavour.</span></p>			            </div>
+<div id="ingredients" class="module bordered module padded">
+<h2>Ingredients</h2>
+<dl id="stages">
+<dt class="stage-title"></dt>
+<dd>
+<ul>
+                <li><p class="ingredient">4 large skinless <a href="/food/chicken_breast" class="name food">chicken breasts</a>, cut into chunks</p></li>
+                <li><p class="ingredient">3 tbsp <a href="/food/vegetable_oil" class="name food">vegetable oil</a></p></li>
+                <li><p class="ingredient">1 tsp yellow or brown <a href="/food/mustard_seeds" class="name food">mustard seeds</a> </p></li>
+                <li><p class="ingredient">1 large <a href="/food/onion" class="name food">onion</a>, sliced</p></li>
+                <li><p class="ingredient">3 <a href="/food/garlic" class="name food">garlic</a> cloves, finely sliced</p></li>
+                <li><p class="ingredient">1x400ml can <a href="/food/coconut_milk" class="name food">coconut milk</a></p></li>
+                <li><p class="ingredient"><a href="/food/salt" class="name food">salt</a></p></li>
+		</ul>
+</dd>
+<dt class="stage-title">For the marinade</dt>
+<dd>
+<ul>
+                <li><p class="ingredient">1 tsp <a href="/food/paprika" class="name food">paprika</a></p></li>
+                <li><p class="ingredient">½ tsp ground <a href="/food/turmeric" class="name food">turmeric</a></p></li>
+                <li><p class="ingredient">1½ tbsp ground coriander</p></li>
+                <li><p class="ingredient">1 tsp ground <a href="/food/cumin" class="name food">cumin</a></p></li>
+                <li><p class="ingredient">1 tsp <a href="/food/cayenne_pepper" class="name food">cayenne pepper</a></p></li>
+                <li><p class="ingredient">1 tbsp <a href="/food/lemon_juice" class="name food">lemon juice</a></p></li>
+                <li><p class="ingredient">½ tsp <a href="/food/salt" class="name food">salt</a></p></li>
+                <li><p class="ingredient">75ml/2¾fl oz water</p></li>
+		</ul>
+</dd>
+</dl>
+</div>
+<div id="preparation" class="module bordered">
+<h2>Preparation method</h2>
+<ol class="instructions">
+<li class="instruction">
+<p>Mix together all the marinade ingredients to give you a loose, smooth paste. Add the chicken pieces and coat them in the paste. They are best left to marinate for around 30 minutes to 1 hour, but if you're in a hurry a few minutes will do. </p>
+				</li>
+		<li class="instruction">
+<p>Heat the oil in a deep frying pan and add the mustard seeds. When they start to pop and jump about in the pan, add the onion and garlic. Cook until they're golden brown before adding the chicken and any extra paste from the marinade. Fry over a gentle heat for about 8 minutes before adding the coconut milk. Increase the heat slightly and bring to a simmer. Cook for a further 10-12 minutes until the sauce has thickened slightly before seasoning with salt if necessary and serving with rice or naan bread.</p>
+				</li>
+</ol>
+</div>
