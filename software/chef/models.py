@@ -11,6 +11,14 @@ class Ingredient(Storm):
 #   qty = Float()
 #   unit = Unicode()
 
+class Webpage(Storm):
+  __storm_table__ = 'webpage'
+  id = Int(primary=True)
+  title = Unicode()
+  url = Unicode()
+  html = Unicode()
+  source = Unicode()
+
 class Procedure(Storm):
   __storm_table__ = 'procedures'
   id = Int(primary=True)
@@ -28,14 +36,15 @@ class Category(Storm):
   id = Int(primary=True)
   name = Unicode()
 
-class RecipeCategories:
+class RecipeCategories(Storm):
   __storm_table__ = 'recipe_categories'
+  id = Int(primary=True)
   recipe_id = Int()
   category_id = Int()
   recipe = ReferenceSet(recipe_id, Recipe.id)
   category = ReferenceSet(category_id, Category.id)
 
-class RecipeIngredient:
+class RecipeIngredient(Storm):
   __storm_table__ = 'recipe_ingredients'
   id = Int(primary=True)
   name = Unicode()

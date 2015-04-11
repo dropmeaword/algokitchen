@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+
+echo "Creating database..."
+
+sqlite3 cookbook.db < schema.sql
+
+echo "Done. Bye!"

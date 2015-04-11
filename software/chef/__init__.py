@@ -8,7 +8,7 @@ class Chef:
 		db = create_database( "sqlite:{0}".format(dbname) )
 		self.store = Store(db)
 
-	def initialize():
+	def initialize(self):
 		try:
 			import chef.models
 		except ImportError as e:
@@ -24,15 +24,27 @@ class Chef:
 		pprint(classes)
 		print("*"*60)
 		for name, obj in classes:
-			print("{0}<{1}>".format(name, obj))
 			mdl = obj()
+			print("{0} -> {1} on table '{2}'".format(name, obj, mdl.__storm_table__))
 			#store.add(mdl)
 			pprint(mdl)
-			pprint(mdl.__storm_table__)
 			self.store.add(mdl)
 
 		self.store.commit()
 
-	def test():
-		self.store.execute('UPDATE bars SET bar_name=? WHERE bar_id like ?', []) 
+	def test(self):
+		from chef.models import Webpage
+
+		wp = Webpage()
+		wp.url = u"http://www.sevillasantajusta.tld"
+		wp.html = u"<html><body></body></html>"
+		wp.source = u"Sevilla"
+		self.store.add(wp)
+
+		# @todo how to select and update a record
+
+		# add record manually
+		self.store.execute("INSERT INTO webpage ('url', 'html', 'source') VALUES(?, ?, ?)", ['http://www.test.tld', '<html></html>', 'Test Food'])
+		
+		#self.store.execute('UPDATE bars SET bar_name=? WHERE bar_id like ?', []) 
 		self.store.commit()
