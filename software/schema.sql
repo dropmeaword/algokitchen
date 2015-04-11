@@ -4,6 +4,13 @@ PRAGMA foreign_keys = ON;
 -- Create DB is a single transaction
 BEGIN TRANSACTION;
 
+CREATE TABLE webpage (
+    id INTEGER PRIMARY KEY,
+    url TEXT,
+    html TEXT,
+    source VARCHAR(255)
+);
+
 CREATE TABLE ingredients (
     id INTEGER PRIMARY KEY,
     name VARCHAR(255)
@@ -27,6 +34,7 @@ CREATE TABLE categories (
 );
 
 CREATE TABLE recipe_categories (
+  id INTEGER PRIMARY KEY,
   recipe_id INTEGER,
   category_id INTEGER,
   FOREIGN KEY(recipe_id) REFERENCES recipes(id),

@@ -1,4 +1,4 @@
-import chef
+from chef import Chef
 
 def process_recipes():
 	pass
@@ -8,7 +8,8 @@ def load_recipe():
 
 
 def main():
-	chef.initialize()
+	c = Chef()
+	c.initialize()
 
 if __name__ == '__main__':
 	main()
