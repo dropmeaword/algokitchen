@@ -4,6 +4,8 @@ class Ingredient(Storm):
   __storm_table__ = 'ingredients'
   id = Int(primary=True)
   name = Unicode()
+  photo = Pickle()
+  normalized = Unicode()
 
 # class Amount:
 #   __storm_table__ = 'amounts'
@@ -19,6 +21,9 @@ class Webpage(Storm):
   html = Unicode()
   source = Unicode()
 
+  def __str__(self):
+    return "\turl: "+self.url+" title: "+self.title
+
 class Procedure(Storm):
   __storm_table__ = 'procedures'
   id = Int(primary=True)
@@ -29,6 +34,7 @@ class Recipe(Storm):
   id = Int(primary=True)
   name = Unicode()
   description = Unicode()
+  photo = Pickle()
   serves = Int()
 
 class Category(Storm):
@@ -51,6 +57,7 @@ class RecipeIngredient(Storm):
   description = Unicode()
   amount = Unicode()
   unit = Unicode()
+  prep = Unicode()   # crushed, peeled, sliced, pitted
   ingredient_id = Int()
   recipe_id = Int()
   ingredient = ReferenceSet(ingredient_id, Ingredient.id)

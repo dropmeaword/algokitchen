@@ -5,6 +5,7 @@ from pprint import pprint
 
 class Chef:
 	def __init__(self, dbname = "cookbook.db"):
+		logging.debug("Opening database {0}".format(dbname))
 		db = create_database( "sqlite:{0}".format(dbname) )
 		self.store = Store(db)
 
