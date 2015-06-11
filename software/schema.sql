@@ -6,6 +6,7 @@ BEGIN TRANSACTION;
 
 CREATE TABLE webpage (
     id INTEGER PRIMARY KEY,
+    title TEXT,
     url TEXT,
     html TEXT,
     source VARCHAR(255)
