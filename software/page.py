@@ -4,7 +4,9 @@ import chef
 import requests
 import urllib
 import csv
+from pympler import muppy, summary
 from chef.models import *
+from storm.locals import *
 import knife
 from knife.bbcfood import BBCFood
 
@@ -12,16 +14,26 @@ duplicated = 0
 fetched = 0
 saved = 0
 
-def fetch_all_recipes(filein="recipes.txt"):
+def fetch_all_recipes(filein="recipes.awk.txt"):
 	global duplicated, fetched, saved
-	c = chef.Chef()
+	#book = chef.Chef()
 	with open(filein, "r") as fin:
 		reader = csv.reader(fin, delimiter=',', skipinitialspace=True)
 		for line in reader:
 			uri = line[0]
 			title = line[1]
 			fetchurl = BBCFood.BASE_URL.format(uri)
-			res = c.store.find(Webpage, Webpage.url == unicode(fetchurl, 'utf-8')).any()
+			
+			db = create_database( "sqlite:{0}".format('cookbook.db') )
+			book = Store(db)
+			#all_objects = muppy.get_objects()
+			#ucodeobj = muppy.filter(all_objects, Type=unicode)
+			#sum1 = summary.summarize(ucodeobj)
+			res = book.find(Webpage, Webpage.url == unicode(fetchurl, 'utf-8')).any()
+			#sum2 = summary.summarize(ucodeobj)
+			#diff = summary.get_diff(sum1, sum2)
+			#summary.print_(diff)
+			
 			if not res:
 				# sleep for a bit between requests
 				nap = 2.0 / random.randrange(1, 8)
@@ -38,18 +50,24 @@ def fetch_all_recipes(filein="recipes.txt"):
 					wp.url = unicode(fetchurl, 'utf-8')
 					wp.source = unicode(BBCFood.__source__, 'utf-8')
 					wp.html = page.text
-					c.store.add(wp)
-					c.store.commit()
+					book.add(wp)
+					book.commit()
+					book.close()
 					saved += 1
+					del wp
 				else:
 					logging.warning( "Failed to fetch: {0}".format(fetchurl) )
 			else:
 				logging.debug( "Duplicate found: {0}".format(fetchurl) )
 				duplicated += 1
+				del res
+
+			del book
+			del db
 
 def main():
 	try:
-		fetch_all_recipes("recipes.txt")
+		fetch_all_recipes("recipes.awk.txt")
 	except KeyboardInterrupt, e:
 		logging.info("Seems like you want to exit")
 	finally:
