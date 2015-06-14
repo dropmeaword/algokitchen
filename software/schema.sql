@@ -4,7 +4,7 @@ PRAGMA foreign_keys = ON;
 -- Create DB is a single transaction
 BEGIN TRANSACTION;
 
-CREATE TABLE webpage (
+CREATE TABLE webpages (
     id INTEGER PRIMARY KEY,
     title TEXT,
     url TEXT,
@@ -12,11 +12,12 @@ CREATE TABLE webpage (
     source VARCHAR(255)
 );
 
-CREATE TABLE picture (
+CREATE TABLE pictures (
   id INTEGER PRIMARY KEY,
   url TEXT,
   filename TEXT,
   description TEXT,
+  mime TEXT,
   image BLOB
 );
 
