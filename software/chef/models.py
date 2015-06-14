@@ -13,8 +13,18 @@ class Ingredient(Storm):
 #   qty = Float()
 #   unit = Unicode()
 
+class Image(Storm):
+  __storm_table__ = 'images'
+  id = Int(primary=True)
+  url = Unicode()
+  filename = Unicode()
+  description = Unicode()
+  mime = Unicode()
+  image = Pickle()
+
+
 class Webpage(Storm):
-  __storm_table__ = 'webpage'
+  __storm_table__ = 'webpages'
   id = Int(primary=True)
   title = Unicode()
   url = Unicode()
