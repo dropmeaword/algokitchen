@@ -5,8 +5,12 @@ from lxml import html
 import requests
 import urllib
 import csv
+
+from storm.locals import *
+from chef.models import *
 from knife import FoodImporter
 from chef import Chef
+import cookbook
 
  
 def example():
@@ -26,6 +30,43 @@ class BBCFood(FoodImporter):
 	BASE_URL = "http://www.bbc.co.uk{0}" 
 
 	ENCODING = "latin-1"
+
+	def rip(self, fetchurl):
+		""" fetch and store a single url """
+		book = Store( cookbook.open() )
+		res = book.find(Webpage, Webpage.url == unicode(fetchurl, 'utf-8')).any()
+
+		wp = None	
+		if not res:
+			logging.debug( "Fetching recipe at {0}".format(fetchurl) )
+			page = requests.get(fetchurl)
+			if (page.status_code == 200):
+				# get title
+				title = "Untitled"
+				tree = html.fromstring(page.text)
+				tnode = tree.xpath('//h1[@class="fn "]')  # violates hRecipe in that it has a space
+				if tnode:
+					title = tnode[0].text_content().encode(BBCFood.ENCODING)
+
+				# store in db
+				logging.debug("Saving webpage...")
+				wp = Webpage()
+				wp.title = unicode(title, 'utf-8')
+				wp.url = unicode(fetchurl, 'utf-8')
+				wp.source = unicode(BBCFood.__source__, 'utf-8')
+				wp.html = page.text
+				book.add(wp)
+				book.commit()
+				book.close()
+			else:
+				logging.warning( "Failed to fetch: {0}".format(fetchurl) )
+		else:
+			logging.debug( "Duplicate found: {0}".format(fetchurl) )
+			del res
+
+		del book
+		return wp
+
 
 	def find_all_ingredients(self):
 		""" return a list of tuples containing (ingredient, url) """
