@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+
+echo "Removing duplicate lines from $1 and saving in nodupes.$1..."
+awk '!seen[$0]++' $1 > nodupes.$1
