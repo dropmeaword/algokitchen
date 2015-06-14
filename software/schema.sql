@@ -12,6 +12,14 @@ CREATE TABLE webpage (
     source VARCHAR(255)
 );
 
+CREATE TABLE picture (
+  id INTEGER PRIMARY KEY,
+  url TEXT,
+  filename TEXT,
+  description TEXT,
+  image BLOB
+);
+
 CREATE TABLE ingredients (
     id INTEGER PRIMARY KEY,
     name VARCHAR(255)
