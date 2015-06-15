@@ -12,12 +12,14 @@ CREATE TABLE webpages (
     source VARCHAR(255)
 );
 
-CREATE TABLE pictures (
+CREATE TABLE images (
   id INTEGER PRIMARY KEY,
   url TEXT,
   filename TEXT,
   description TEXT,
   mime TEXT,
+  width INTEGER,
+  height INTEGER,
   image BLOB
 );
 
