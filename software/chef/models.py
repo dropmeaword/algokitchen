@@ -20,6 +20,8 @@ class Image(Storm):
   filename = Unicode()
   description = Unicode()
   mime = Unicode()
+  width = Int()
+  height = Int()
   image = Pickle()
 
 
