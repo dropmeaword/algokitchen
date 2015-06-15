@@ -227,21 +227,62 @@ class RecipeParser:
 	""" The BBCFood website presents the data in hRecipe format 
 	http://microformats.org/wiki/hrecipe
 	"""
-	def __init__(self, html):
-		tree = html.fromstring(html)
-		title = tree.xpath('//h1[@class="fn"]')  # title of recipe
-		pprint(desc)
+	def __init__(self, markup):
+		tree = html.fromstring(markup)
+		tnode = tree.xpath('//h1[@class="fn "]')  # title of recipe
+		self.title = tnode[0].text_content().encode(BBCFood.ENCODING)
+		print("Title: {0}".format(self.title))
 
-		photo = tree.xpath('//div[@id="food-image"]')  # picture of dish
+		# picture of dish
+		picnode = tree.xpath('//img[@id="food-image"]') 
+		if picnode:
+			imgurl = picnode[0].attrib['src'].encode(BBCFood.ENCODING)
+			imgdesc = picnode[0].attrib['alt'].encode(BBCFood.ENCODING)
+			imgw = picnode[0].attrib['width'].encode(BBCFood.ENCODING)
+			imgh = picnode[0].attrib['height'].encode(BBCFood.ENCODING)
+			print("Image found: {0}, ({1}x{2}), {3}".format(imgurl,imgw, imgh, imgdesc))
 
-		desc = tree.xpath('//div[@id="description"]/span[@class="summary"]')  # description of recipe
+		# description of dish
+		dnode = tree.xpath('//div[@id="description"]//span[@class="summary"]')
+		if dnode:
+			desc = dnode[0].text_content().encode(BBCFood.ENCODING)
+			print "Description: ", desc
 
-		ingredients = tree.xpath('//div[@id="ingredients"]')
+		# preparation time
+		node = tree.xpath('//span[@class="prepTime"]/span[@class="value-title"]')
+		if node:
+			tprep = node[0].attrib['title'].encode(BBCFood.ENCODING)
+			print "Prep time: ", tprep
 
+		# cooking time
+		node = tree.xpath('//span[@class="cookTime"]/span[@class="value-title"]')
+		if node:
+			tcook = node[0].attrib['title'].encode(BBCFood.ENCODING)
+			print "Cook time: ", tcook
+
+		# yield
+		node = tree.xpath('//h3[@class="yield"]')
+		if node:
+			yld = node[0].text_content().encode(BBCFood.ENCODING)
+			print "Yield: ", yld
+
+		#nodes = ingredients.xpath('dl[@id="stages"]')
+
+		# description of ingredients and normalized names
+		nodes = tree.xpath('//div[@id="ingredients"]')
+		if nodes:
+			inodes = nodes[0].xpath('//ul/li/p[@class="ingredient"]')
+			for i in inodes:
+				ing = i.text_content().encode("utf-8") # ingredient description
+				print "ing: ", ing
+				norms = i.xpath('a[@class="name food"]')  # ingredients, normalized names
+				if norms:
+					for n in norms:
+						norm = n.text_content().encode(BBCFood.ENCODING)
+						print "norm: ", norm
 		# is it a recipe with multiple stages? 
-		stages = ingredients.xpath('dl[@id="stages"]')
 		# each stage has a set of ingredients
-		self.parse_ingredients()
+#		self.parse_ingredients()
 
 	def parse_ingredients(self, node):
 		"""
