@@ -14,6 +14,27 @@ duplicated = 0
 fetched = 0
 saved = 0
 
+# def insert_picture(conn, picture_file):
+#     with open(picture_file, 'rb') as input_file:
+#         ablob = input_file.read()
+#         base=os.path.basename(picture_file)
+#         afile, ext = os.path.splitext(base)
+#         sql = '''INSERT INTO PICTURES
+#         (PICTURE, TYPE, FILE_NAME)
+#         VALUES(?, ?, ?);'''
+#         conn.execute(sql,[sqlite3.Binary(ablob), ext, afile]) 
+#         conn.commit()
+
+# def fetch_recipe_images():
+# 	pass
+
+# def fetch_ingredient_images():
+# 	pass
+
+# def fetch_all_images():
+# 	fetch_ingredient_images()
+# 	fetch_recipe_images()
+
 def fetch_all_recipes(filein="recipes.awk.txt"):
 	global duplicated, fetched, saved
 	#book = chef.Chef()
