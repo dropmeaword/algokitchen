@@ -5,6 +5,7 @@ from lxml import html
 import requests
 import urllib
 import csv
+import isodate
 
 from storm.locals import *
 from chef.models import *
@@ -54,7 +55,7 @@ class BBCFood(FoodImporter):
                 wp.title = unicode(title, 'utf-8')
                 wp.url = unicode(fetchurl, 'utf-8')
                 wp.source = unicode(BBCFood.__source__, 'utf-8')
-                wp.html = page.text
+                wp.html = page.text  # should be unicode too?
                 book.add(wp)
                 book.commit()
                 book.close()
@@ -252,13 +253,15 @@ class RecipeParser:
         node = tree.xpath('//span[@class="prepTime"]/span[@class="value-title"]')
         if node:
             tprep = node[0].attrib['title'].encode(BBCFood.ENCODING)
-            print "Prep time: ", tprep
+            td = isodate.parse_duration(tprep)
+            print "Prep time: ", td
 
         # cooking time
         node = tree.xpath('//span[@class="cookTime"]/span[@class="value-title"]')
         if node:
             tcook = node[0].attrib['title'].encode(BBCFood.ENCODING)
-            print "Cook time: ", tcook
+            td = isodate.parse_duration(tcook)
+            print "Cook time: ", td
 
         # yield
         node = tree.xpath('//h3[@class="yield"]')
@@ -266,29 +269,63 @@ class RecipeParser:
             yld = node[0].text_content().encode(BBCFood.ENCODING)
             print "Yield: ", yld
 
-        #nodes = ingredients.xpath('dl[@id="stages"]')
-
-        # description of ingredients and normalized names
-        nodes = tree.xpath('//div[@id="ingredients"]')
-        if nodes:
+        self.ingredients = []
+        self.foodstuffs  = []
+        nodes = tree.xpath('//dt[@class="stage-title"]')
+        # is it a recipe with multiple stages?
+        if len(nodes) > 0:
+            for st in nodes:
+                stage = st.text_content().encode('utf-8')
+                #print "STAGE ", stage
+                inglst = st.getnext() # get sibling
+                lst = inglst.xpath('.//li/p[@class="ingredient"]')
+                #pprint(lst)
+                ings = self.parse_ingredients(lst, stage)
+                #pprint(ings)
+                self.ingredients.extend(ings['ingredients'])
+                self.foodstuffs.extend(ings['foodstuffs'])
+        else:
+            # description of ingredients and normalized names
+            nodes = tree.xpath('//div[@id="ingredients"]')
             inodes = nodes[0].xpath('//ul/li/p[@class="ingredient"]')
             self.ingredients = []
-            for i in inodes:
-                ing = i.text_content().encode("utf-8") # ingredient description
-                print "ing: ", ing
-                self.ingredients.append(ing)
-                norms = i.xpath('a[@class="name food"]')  # ingredients, normalized names
-                if norms:
-                    for n in norms:
-                        norm = n.text_content().encode(BBCFood.ENCODING)
-                        print "norm: ", norm
-        # is it a recipe with multiple stages?
-        # each stage has a set of ingredients
-#        self.parse_ingredients()
+            ings = self.parse_ingredients(inodes)
+            self.ingredients.extend(ings['ingredients'])
+            self.foodstuffs.extend(ings['foodstuffs'])
 
-    def parse_ingredients(self, node):
+        self.preparations = []
+        nodes = tree.xpath('//ol[@class="instructions"]/li[@class="instruction"]')
+        self.parse_preparations(nodes)
+
+    def parse_ingredients(self, nodes, stage=''):
         """
             Parse ingredients specified as:
             <p class="ingredient">1 <a href="/food/shallot" class="name food">shallot</a>, peeled, finely sliced</p>
         """
-        ingnodes = node.xpath('p[@class="ingredient"]')
+        # description of ingredients and normalized names
+        if len(nodes) > 0:
+            ingredients = []
+            foodstuffs = []
+            for i in nodes:
+                ing = i.text_content().encode("utf-8") # ingredient description
+                #print "ing: ", ing, " || stage: ", stage
+                ingredients.append(ing)
+                norms = i.xpath('a[@class="name food"]')  # ingredients, normalized names
+                if norms:
+                    for n in norms:
+                        norm = n.text_content().encode(BBCFood.ENCODING)
+                        #print "norm: ", norm
+                        foodstuffs.append(norm)
+
+        return {'ingredients' : ingredients, 'foodstuffs': foodstuffs}
+
+    def parse_preparations(self, nodes):
+        if len(nodes) > 0:
+            ordinal = 1
+            preparations = []
+            for pnode in nodes:
+                parafs = pnode.xpath('.//p')
+                for p in parafs:
+                    print ordinal, ". prep:", p.text_content().encode("utf-8")
+
+                ordinal += 1

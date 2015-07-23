@@ -35,14 +35,30 @@ def parse_recipe_by_url(fetchurl):
 	# if found, parse it
 	if res:
 		recipe = bbcfood.RecipeParser(res.html)
-		for ing in recipe.ingredients:
-			import unicodedata
-			unicodedata.numeric(ing)
-			tag_ingredient(ing.encode('utf-8'))
+		if hasattr(recipe, 'ingredients'):
+			for ing in recipe.ingredients:
+				print "ingredient: ", ing
+				# import unicodedata
+				# unicodedata.numeric(ing)
+				# tag_ingredient(ing.encode('utf-8'))
+		else:
+			print "No ingredients found in recipe!"
+
+		if hasattr(recipe, 'foodstuffs'):
+			for fs in recipe.foodstuffs:
+				print "foodstuff: ", fs
+				# import unicodedata
+				# unicodedata.numeric(ing)
+				# tag_ingredient(ing.encode('utf-8'))
+		else:
+			print "No foodstuffs found in recipe!"
 
 def main():
 	try:
 		for r in SAMPLES:
+			print
+			print "="*80
+			print
 			parse_recipe_by_url(r)
 	except KeyboardInterrupt, e:
 		logging.info("Seems like you want to exit")
