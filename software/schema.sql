@@ -12,6 +12,13 @@ CREATE TABLE webpages (
     source VARCHAR(255)
 );
 
+CREATE TABLE foodstuffs (
+  id INTEGER PRIMARY KEY,
+  name TEXT,
+  normalized TEXT,
+  photo BLOB
+);
+
 CREATE TABLE images (
   id INTEGER PRIMARY KEY,
   url TEXT,
@@ -23,21 +30,23 @@ CREATE TABLE images (
   image BLOB
 );
 
-CREATE TABLE ingredients (
-    id INTEGER PRIMARY KEY,
-    name VARCHAR(255)
-);
-
-CREATE TABLE procedures (
-    id INTEGER PRIMARY KEY,
-    description TEXT
-);
-
 CREATE TABLE recipes (
   id INTEGER PRIMARY KEY,
   name VARCHAR(255),
   description TEXT,
-  serves INTEGER
+  serves INTEGER,
+  time_prep TEXT,
+  time_cooking TEXT,
+);
+
+CREATE TABLE preparations (
+    id INTEGER PRIMARY KEY,
+    description TEXT
+);
+
+CREATE TABLE preparations_foodstuffs (
+  foodstuff_id INT,
+  preparation_id INT
 );
 
 CREATE TABLE categories (
