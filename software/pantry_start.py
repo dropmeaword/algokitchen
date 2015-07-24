@@ -1,4 +1,4 @@
-from server import http
+from pantry import http
 import bottle
 
 def main():
