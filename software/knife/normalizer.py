@@ -24,7 +24,7 @@ def foodstuff_normalize_name(foodstuff):
     words = foodstuff.strip().split()
     for w in words:
         lemma += wnl.lemmatize(w.lower(), 'n') + " "
-        print "int:", w, lemma
+        #print "int:", w, lemma
 
     return lemma.strip()
 
@@ -82,8 +82,19 @@ class NormalizeFoodstuffs(PostProcessingTool):
         self.book.commit()
 
     def processOne(self, item):
-        print "foodstuff: ", item.name
-        self.stats['processed'] += 1
+        try:
+            norm = foodstuff_normalize_name(item.name)
+            # make change in db
+            item.normalized = norm
+            self.book.commit()
+            # print to screen
+            if norm is not item.name:
+                print item.name, " -> ", norm
+            self.stats['processed'] += 1
+        except KeyboardInterrupt as e:
+            raise
+        except Exception as e:
+            self.stats['failed'] += 1
 
 
 if __name__ == '__main__':
