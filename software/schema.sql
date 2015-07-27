@@ -8,7 +8,7 @@ CREATE TABLE trails (
   id INTEGER PRIMARY KEY,
   what TEXT,
   script TEXT,
-  tstamp TIMESTAMP
+  tstamp TIMESTAMP DEFAULT (datetime('now','localtime'))
 );
 
 CREATE TABLE webpages (
