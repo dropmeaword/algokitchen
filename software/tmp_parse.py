@@ -17,8 +17,8 @@ from nltk.tag import pos_tag, map_tag
 
 
 SAMPLES = ['http://www.bbc.co.uk/food/recipes/quailpoachedandroast_88477', # no-image, 4 stages
-'http://www.bbc.co.uk/food/recipes/chicken_with_asparagus_44206' # images and unicode
-]
+'http://www.bbc.co.uk/food/recipes/chicken_with_asparagus_44206', # images and unicode
+'http://www.bbc.co.uk/food/recipes/rack_of_lamb_with_83700']
 
 def tag_ingredient(txt):
 	""" POS tag ingredient line """
@@ -31,27 +31,30 @@ def parse_recipe_by_url(fetchurl):
 	# find recipe by url
 	book = Store( cookbook.open() )
 	res = book.find(Webpage, Webpage.url == unicode(fetchurl, 'utf-8')).any()
-	book.close()
+	#book.close()
 	# if found, parse it
 	if res:
-		recipe = bbcfood.RecipeParser(res.html)
-		if hasattr(recipe, 'ingredients'):
-			for ing in recipe.ingredients:
-				print "ingredient: ", ing
-				# import unicodedata
-				# unicodedata.numeric(ing)
-				# tag_ingredient(ing.encode('utf-8'))
-		else:
-			print "No ingredients found in recipe!"
+		print "url: ", fetchurl
+		recipe = bbcfood.RecipeParser(res.url.encode('ascii'), res.html, book)
+		# if hasattr(recipe, 'ingredients'):
+		# 	for ing in recipe.ingredients:
+		# 		print "ingredient: ", ing.name
+		# 		for fs in ing.foodstuffs:
+		# 			print "foodstuff: ", fs.name
+		# 		# import unicodedata
+		# 		# unicodedata.numeric(ing)
+		# 		#tag_ingredient(ing.encode('utf-8'))
+		# else:
+		# 	print "No ingredients found in recipe!"
 
-		if hasattr(recipe, 'foodstuffs'):
-			for fs in recipe.foodstuffs:
-				print "foodstuff: ", fs
-				# import unicodedata
-				# unicodedata.numeric(ing)
-				# tag_ingredient(ing.encode('utf-8'))
-		else:
-			print "No foodstuffs found in recipe!"
+		# if hasattr(recipe, 'foodstuffs'):
+		# 	for fs in recipe.foodstuffs:
+		# 		print "foodstuff: ", fs
+		# 		# import unicodedata
+		# 		# unicodedata.numeric(ing)
+		# 		# tag_ingredient(ing.encode('utf-8'))
+		# else:
+		# 	print "No foodstuffs found in recipe!"
 
 def main():
 	try:

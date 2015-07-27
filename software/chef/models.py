@@ -1,5 +1,18 @@
 from storm.locals import *
 
+class Trail(Storm):
+  __storm_table__ = 'trails'
+  id = Int(primary=True)
+  what = RawStr()
+  script = RawStr()
+  tstamp = DateTime()
+
+class Fail(Storm):
+  __storm_table__ = 'fails'
+  id = Int(primary=True)
+  url = RawStr()
+  reason = RawStr()
+
 class Foodstuff(Storm):
   __storm_table__ = 'foodstuffs'
   id = Int(primary=True)
@@ -16,10 +29,10 @@ class Foodstuff(Storm):
 class Image(Storm):
   __storm_table__ = 'images'
   id = Int(primary=True)
-  url = Unicode()
-  filename = Unicode()
+  url = RawStr()
+  filename = RawStr()
   description = Unicode()
-  mime = Unicode()
+  mime = RawStr()
   width = Int()
   height = Int()
   image = Pickle()
@@ -29,20 +42,45 @@ class Webpage(Storm):
   __storm_table__ = 'webpages'
   id = Int(primary=True)
   title = Unicode()
-  url = Unicode()
+  url = Unicode() #should be RawStr()
   html = Unicode()
-  source = Unicode()
+  source = RawStr()
 
   def __str__(self):
     return "\turl: "+self.url+" title: "+self.title
 
-class Recipe(Storm):
-  __storm_table__ = 'recipes'
+class RecipeIngredients(Storm):
+    __storm_table__ = "recipes_ingredients"
+    __storm_primary__ = "recipe_id", "ingredient_id"
+    recipe_id = Int()
+    ingredient_id = Int()
+    ordinal = Int()
+    stage = Unicode()
+
+class Ingredient(Storm):
+  __storm_table__ = 'ingredients'
   id = Int(primary=True)
   name = Unicode()
   description = Unicode()
-  photo = Pickle()
+  amount = RawStr()
+  unit = RawStr()
+  prep = Unicode()   # crushed, peeled, sliced, pitted
+  # stage = Unicode()  # sauce, garnish, filling
+  # recipe_id = Int()
+  # recipe = ReferenceSet(recipe_id, Recipe.id)
+
+class Recipe(Storm):
+  __storm_table__ = 'recipes'
+  id = Int(primary=True)
+  url = RawStr()
+  name = Unicode()
+  description = Unicode()
   serves = Int()
+  serves_txt = RawStr()
+  time_prep = RawStr()
+  time_cook = RawStr()
+  photo_id = Int()
+  photo = ReferenceSet(photo_id, Image.id)
 
 class Category(Storm):
   __storm_table__ = 'categories'
@@ -63,20 +101,6 @@ class IngredientFoodstuffs(Storm):
     foodstuff_id = Int()
     ingredient_id = Int()
 
-class RecipeIngredient(Storm):
-  __storm_table__ = 'recipe_ingredients'
-  id = Int(primary=True)
-  name = Unicode()
-  description = Unicode()
-  amount = Unicode()
-  unit = Unicode()
-  prep = Unicode()   # crushed, peeled, sliced, pitted
-  stage = Unicode()  # sauce, garnish, filling
-  recipe_id = Int()
-  recipe = ReferenceSet(recipe_id, Recipe.id)
-
-RecipeIngredient.foodstuffs = ReferenceSet(RecipeIngredient.id, IngredientFoodstuffs.ingredient_id, IngredientFoodstuffs.foodstuff_id, Foodstuff.id)
-
 class PreparationFoodstuffs(Storm):
     __storm_table__ = "preparations_foodstuffs"
     __storm_primary__ = "foodstuff_id", "preparation_id"
@@ -91,4 +115,9 @@ class Preparation(Storm):
   recipe_id = Int()
   recipe = ReferenceSet(recipe_id, Recipe.id)
 
+# m2m preparations in recipes
 Preparation.foodstuffs = ReferenceSet(Preparation.id, PreparationFoodstuffs.preparation_id, PreparationFoodstuffs.foodstuff_id, Foodstuff.id)
+# m2m foodstuffs in ingredients
+Ingredient.foodstuffs = ReferenceSet(Ingredient.id, IngredientFoodstuffs.ingredient_id, IngredientFoodstuffs.foodstuff_id, Foodstuff.id)
+# m2m ingredients in recipes
+Recipe.ingredients = ReferenceSet(Recipe.id, RecipeIngredients.recipe_id, RecipeIngredients.ingredient_id, Ingredient.id)

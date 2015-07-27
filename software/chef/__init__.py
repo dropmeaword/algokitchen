@@ -3,6 +3,24 @@ import inspect
 import logging
 from pprint import pprint
 
+
+# from chef import Chef
+#
+# def process_recipes():
+# 	pass
+#
+# def load_recipe():
+# 	pass
+#
+# 
+# def main():
+# 	c = Chef()
+# 	c.initialize()
+#
+# if __name__ == '__main__':
+# 	main()
+#
+
 class Chef:
 	def __init__(self, dbname = "cookbook.db"):
 		logging.debug("Opening database {0}".format(dbname))
@@ -46,6 +64,6 @@ class Chef:
 
 		# add record manually
 		self.store.execute("INSERT INTO webpage ('url', 'html', 'source') VALUES(?, ?, ?)", ['http://www.test.tld', '<html></html>', 'Test Food'])
-		
-		#self.store.execute('UPDATE bars SET bar_name=? WHERE bar_id like ?', []) 
+
+		#self.store.execute('UPDATE bars SET bar_name=? WHERE bar_id like ?', [])
 		self.store.commit()
