@@ -1,3 +1,9 @@
+__doc__ = """This module contains tools to import, hack and slice data.
+Submodules implement importers for various data sources.
+
+(cc) 2015 Luis Rodil-Fernandez <root@derfunke.net>
+"""
+
 import os, sys
 import logging
 
