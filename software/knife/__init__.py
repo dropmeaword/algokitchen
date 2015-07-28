@@ -43,7 +43,7 @@ class PostProcessingTool:
         try:
             self.book = Store( cookbook.open() )
             res = self.query()
-            print "res:", res
+            #print "res:", res
             if res:
                 for r in res:
                     self.processOne(r)

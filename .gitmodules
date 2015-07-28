@@ -1,0 +1,3 @@
+[submodule "software/extensions/sqlitemagic"]
+	path = software/extensions/sqlitemagic
+	url = https://github.com/dropmeaword/sqlitemagic.git

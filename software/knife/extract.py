@@ -50,6 +50,7 @@ def main():
 					f = Fail()
 					f.url = r.url.encode('ascii')
 					f.reason = str(e)
+					f.phase = "extract"
 					book.add(f)
 					book.commit()
 

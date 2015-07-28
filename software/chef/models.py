@@ -12,6 +12,7 @@ class Fail(Storm):
   id = Int(primary=True)
   url = RawStr()
   reason = RawStr()
+  phase = RawStr()
 
 class Foodstuff(Storm):
   __storm_table__ = 'foodstuffs'
