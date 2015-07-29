@@ -3,6 +3,13 @@ import inspect
 import logging
 from pprint import pprint
 
+def image_from_url(url):
+	"""Return a PIL image from a URL"""
+	from PIL import Image
+	import urllib, cStringIO
+
+	fimg = cStringIO.StringIO(urllib.urlopen(url).read())
+	return Image.open(fimg)
 
 # from chef import Chef
 #
@@ -12,7 +19,7 @@ from pprint import pprint
 # def load_recipe():
 # 	pass
 #
-# 
+#
 # def main():
 # 	c = Chef()
 # 	c.initialize()
