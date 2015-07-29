@@ -14,19 +14,6 @@ class Fail(Storm):
   reason = RawStr()
   phase = RawStr()
 
-class Foodstuff(Storm):
-  __storm_table__ = 'foodstuffs'
-  id = Int(primary=True)
-  name = Unicode()
-  photo = Pickle()
-  normalized = Unicode()
-
-# class Amount:
-#   __storm_table__ = 'amounts'
-#   id = Int(primary=True)
-#   qty = Float()
-#   unit = Unicode()
-
 class Image(Storm):
   __storm_table__ = 'images'
   id = Int(primary=True)
@@ -38,6 +25,13 @@ class Image(Storm):
   height = Int()
   image = Pickle()
 
+class Foodstuff(Storm):
+  __storm_table__ = 'foodstuffs'
+  id = Int(primary=True)
+  name = Unicode()
+  normalized = Unicode()
+  photo_id = Int()
+  photo = Reference(photo_id, Image.id)
 
 class Webpage(Storm):
   __storm_table__ = 'webpages'
@@ -81,7 +75,7 @@ class Recipe(Storm):
   time_prep = RawStr()
   time_cook = RawStr()
   photo_id = Int()
-  photo = ReferenceSet(photo_id, Image.id)
+  photo = Reference(photo_id, Image.id)
 
 class Category(Storm):
   __storm_table__ = 'categories'
