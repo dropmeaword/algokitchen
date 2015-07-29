@@ -5,4 +5,7 @@ data/downloads/*
 software/*.db
 *.pyc
 
+software/.ipynb_checkpoints/
+
 *.tgz
+*.tar.gz
