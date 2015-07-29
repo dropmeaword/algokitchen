@@ -30,7 +30,7 @@ CREATE TABLE foodstuffs (
   id INTEGER PRIMARY KEY,
   name TEXT,
   normalized TEXT,
-  photo BLOB
+  photo_id INTEGER
 );
 
 CREATE TABLE images (

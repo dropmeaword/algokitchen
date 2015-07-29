@@ -7,6 +7,7 @@ import csv
 from pympler import muppy, summary
 from chef.models import *
 from storm.locals import *
+import cookbook
 import knife
 from knife.bbcfood import BBCFood
 
@@ -22,7 +23,7 @@ saved = 0
 #         sql = '''INSERT INTO PICTURES
 #         (PICTURE, TYPE, FILE_NAME)
 #         VALUES(?, ?, ?);'''
-#         conn.execute(sql,[sqlite3.Binary(ablob), ext, afile]) 
+#         conn.execute(sql,[sqlite3.Binary(ablob), ext, afile])
 #         conn.commit()
 
 # def fetch_recipe_images():
@@ -44,7 +45,7 @@ def fetch_all_recipes(filein="recipes.awk.txt"):
 			uri = line[0]
 			title = line[1]
 			fetchurl = BBCFood.BASE_URL.format(uri)
-			
+
 			db = create_database( "sqlite:{0}".format('cookbook.db') )
 			book = Store(db)
 			#all_objects = muppy.get_objects()
@@ -54,7 +55,7 @@ def fetch_all_recipes(filein="recipes.awk.txt"):
 			#sum2 = summary.summarize(ucodeobj)
 			#diff = summary.get_diff(sum1, sum2)
 			#summary.print_(diff)
-			
+
 			if not res:
 				# sleep for a bit between requests
 				nap = 2.0 / random.randrange(1, 8)
